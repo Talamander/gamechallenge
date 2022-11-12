@@ -83,7 +83,7 @@ shape = SubResource( 2 )
 [node name="RayCast2D" type="RayCast2D" parent="Position2D"]
 rotation = -1.5708
 enabled = true
-cast_to = Vector2( 0, 100 )
+cast_to = Vector2( 0, 250 )
 collision_mask = 2
 script = ExtResource( 3 )
 
@@ -92,10 +92,16 @@ visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2( 1.92153, 1.92153 )
 shape = SubResource( 1 )
 
 [node name="test" type="Position2D" parent="."]
 position = Vector2( 0, 29 )
 
+[node name="fireTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="fireTimer" to="." method="_on_fireTimer_timeout"]

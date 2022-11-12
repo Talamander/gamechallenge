@@ -3,12 +3,16 @@ extends KinematicBody2D
 export var rotation_speed:= 90.0
 
 onready var animPlayer = $AnimationPlayer
+onready var fireTimer = $fireTimer
+
+var playerBullet = preload("res://2D Version/Parent Classes/Projectile.tscn")
 
 var motion = Vector2.ZERO
 var acceleration:= 5000
 var speed:= 360.0
 var target = Vector2.ZERO
 var active = false
+var canFire = true
 
 func _ready():
 	pass
@@ -27,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		
 	motion = move_and_slide(motion)
 	
-	draw_shadow()
+	#draw_shadow()
 	
 	
 	#checking if there is a body within the area2d -> aka 'active targeting'
@@ -38,6 +42,9 @@ func _physics_process(delta: float) -> void:
 	
 	animHandler()
 	#rotate_ray(delta)
+	
+	if canFire == true && $Position2D/RayCast2D.is_colliding():
+		fire_bullet()
 
 
 
@@ -90,3 +97,17 @@ func draw_shadow() -> void:
 	var col = Color(255,0,255)
 	draw_circle(center, rad, col)
 	print("shadow should be here")
+
+
+func fire_bullet():
+	canFire = false
+	fireTimer.start()
+	var bullet = Global.instance_scene_on_main(playerBullet, $Position2D/RayCast2D.global_position)
+	
+	bullet.set_rotation($Position2D.global_rotation)
+	bullet.velocity = Vector2.RIGHT.rotated(bullet.rotation) * bullet.speed
+
+
+func _on_fireTimer_timeout():
+	canFire = true
+	print("made it")
