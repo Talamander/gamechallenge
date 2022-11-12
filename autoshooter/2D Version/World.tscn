@@ -10,3 +10,15 @@ position = Vector2( 591, 251 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 487, 264 )
+
+[node name="CameraTrack" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 487, 264 )
+current = true
+zoom = Vector2( 0.75, 0.75 )
+process_mode = 0
+smoothing_enabled = true
+
+[editable path="Player"]
