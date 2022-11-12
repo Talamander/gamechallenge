@@ -2,7 +2,7 @@
 
 [ext_resource path="res://2D Version/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://2D Version/Player/Art/_spriteSheet.png" type="Texture" id=2]
-[ext_resource path="res://2D Version/Parent Classes/RayCast2D.gd" type="Script" id=3]
+[ext_resource path="res://2D Version/Parent Classes/RayController.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idlke"
@@ -59,7 +59,9 @@ extents = Vector2( 17, 36 )
 radius = 183.044
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 0
 script = ExtResource( 1 )
+gunCount = 14
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Run"
@@ -78,17 +80,10 @@ vframes = 2
 visible = false
 shape = SubResource( 2 )
 
-[node name="Position2D" type="Position2D" parent="."]
-
-[node name="RayCast2D" type="RayCast2D" parent="Position2D"]
-rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, 250 )
-collision_mask = 2
+[node name="TargetingSystem" type="Position2D" parent="."]
 script = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -102,6 +97,6 @@ position = Vector2( 0, 29 )
 wait_time = 0.5
 one_shot = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Area2D" to="TargetingSystem" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="TargetingSystem" method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="fireTimer" to="." method="_on_fireTimer_timeout"]

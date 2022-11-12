@@ -7,10 +7,12 @@ var playerBullet = preload("res://2D Version/Parent Classes/Projectile.tscn")
 
 #Exports
 export var rotation_speed:= 90.0
+export var gunCount = 3
 
 #Onready Variables
 onready var animPlayer = $AnimationPlayer
 onready var fireTimer = $fireTimer
+onready var holster = $TargetingSystem
 
 
 #Movement Variables
@@ -20,14 +22,12 @@ var speed:= 360.0
 
 
 #Combat Variables
-var target_list = []
-var active = false
 var canFire = true
 
 
 
 func _ready():
-	pass
+	holster.generate_raycasts(gunCount)
 
 
 
@@ -44,22 +44,11 @@ func _physics_process(delta: float) -> void:
 		
 	motion = move_and_slide(motion)
 	
-	
 
-	
-	#DEBUG
-	if Input.is_action_just_pressed("ui_accept"):
-		print("Array: ",target_list)
-	
 	
 	animHandler()
 	
 	
-	#TARGETING & SHOOTING
-	if active:
-		targeting_system()
-	if canFire == true && $Position2D/RayCast2D.is_colliding():
-		fire_bullet()
 
 
 
@@ -102,30 +91,6 @@ func calc_movement(acceleration):
 
 
 
-
-
-#Targeting System
-func targeting_system():
-	var best_target = null
-	
-	for target in target_list:
-		if best_target == null:
-			best_target = target
-		elif self.position.distance_to(target.position) < self.position.distance_to(best_target.position):
-			best_target = target
-	
-	if best_target != null:
-		$Position2D.look_at(best_target.global_position)
-
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("enemy"):
-		target_list.append(body)
-	active = true
-
-
-func _on_Area2D_body_exited(body):
-	if body.is_in_group("enemy"):
-		target_list.erase(body)
 
 
 
