@@ -52,7 +52,7 @@ func aim_raycasts():
 	var target = get_closest_enemy() #that isn't targeted
 	var raycast = get_raycast() #that isn't actively targeting
 	
-	raycast.target = target
+	raycast.target = target #this isn't really doing anything useful right now
 	
 	#DEBUG
 	print(raycast)
