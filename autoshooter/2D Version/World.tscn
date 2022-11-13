@@ -4,18 +4,48 @@
 [ext_resource path="res://2D Version/Parent Classes/Enemy.tscn" type="PackedScene" id=2]
 
 [node name="World" type="Node2D"]
+position = Vector2( -46, 4 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 591, 251 )
+position = Vector2( 540, 236 )
+rotationSpeed = 25
+fireRate = 0.15
+radius = 35
 
 [node name="Enemy2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 831, 461 )
+position = Vector2( -197, 770 )
+rotationSpeed = -25
+spawnpointCount = 3
+radius = 45
+
+[node name="Enemy3" parent="." instance=ExtResource( 2 )]
+position = Vector2( -216, 73 )
+rotationSpeed = 52
+fireRate = 0.1
+spawnpointCount = 2
+radius = 25
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 122, 432 )
 
+[node name="BulletSpawn" parent="Player" index="0"]
+position = Vector2( 5, -30 )
+
+[node name="CollisionShape2D" parent="Player" index="3"]
+visible = false
+
+[node name="Area2D" parent="Player" index="5"]
+visible = false
+
 [node name="CameraTrack" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
+
+[node name="HealthLabel" type="Label" parent="Player"]
+margin_left = -31.0
+margin_top = -55.0
+margin_right = 19.0
+margin_bottom = -41.0
+text = "HP: 500"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 122, 432 )

@@ -80,6 +80,7 @@ func _on_Area2D_body_entered(body):
 		active = true #just a check
 
 
+
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("enemy"):
 		target_list.erase(body)

@@ -3,7 +3,7 @@ extends KinematicBody2D
 #This script controls everything to do with the player: movement, firing, targeting, anim
 
 #Preloads
-var playerBullet = preload("res://2D Version/Parent Classes/Projectile.tscn")
+const playerBullet = preload("res://2D Version/Parent Classes/Projectile.tscn")
 
 #Exports
 export var rotation_speed:= 90.0
@@ -12,7 +12,11 @@ export var gunCount = 3
 #Onready Variables
 onready var animPlayer = $AnimationPlayer
 onready var fireTimer = $fireTimer
-onready var holster = $TargetingSystem
+onready var holster = $bullet
+onready var bulletSpawn = $BulletSpawn
+
+#debugui
+onready var healthLabel = $HealthLabel
 
 
 #Movement Variables
@@ -22,16 +26,31 @@ var speed:= 360.0
 
 
 #Combat Variables
+var playerHealth = 500
+var playerHealthMAX = 500
+
 var canFire = true
 
+var fireRate := 0.3
+var lastFire := 0.00
 
 
-func _ready():
-	holster.generate_raycasts(gunCount)
+
+
+
+#Firing Call
+func _input(ev):
+	if Input.is_action_pressed("weapon_fire"):
+		fire_bullet()
 
 
 
 func _physics_process(delta: float) -> void:
+	
+	if playerHealth <= 0:
+		animPlayer.play("Dead")
+		return
+	
 	var input_vector = get_input_vector()
 	
 	#MOVEMENT CHECKS
@@ -44,17 +63,17 @@ func _physics_process(delta: float) -> void:
 		
 	motion = move_and_slide(motion)
 	
-
-	
 	animHandler()
+	lastFire += delta
 	
+	if playerHealth < playerHealthMAX and playerHealth > 0:
+		playerHealth += 0.1;
+		healthLabel.text = "HP: " + String(playerHealth)
 	
-
-
-
 
 #Animation System
 func animHandler():
+	
 	if motion == Vector2.ZERO:
 		animPlayer.play("Idlke")
 	
@@ -88,22 +107,33 @@ func calc_movement(acceleration):
 	#Uses the acceleration to ramp up to the speed, so it's not instantaneous
 	motion += acceleration
 	motion = motion.clamped(speed)
-
-
-
-
-
-
-
-
-#Firing System
-func fire_bullet():
-	canFire = false
-	fireTimer.start()
-	var bullet = Global.instance_scene_on_main(playerBullet, $Position2D/RayCast2D.global_position)
 	
-	bullet.set_rotation($Position2D.global_rotation)
-	bullet.velocity = Vector2.RIGHT.rotated(bullet.rotation) * bullet.speed
+
+
+func TakeDamage(dmg):
+	playerHealth -= dmg
+	
+	if playerHealth <= 0:
+		print("player is kill")
+		healthLabel.text = "is kill"
+		return
+		
+	print("player hit HP: " + String(playerHealth))
+	healthLabel.text = "HP: " + String(playerHealth)
+
+
+#Firing System Updated
+func fire_bullet():
+	if lastFire >= fireRate :
+		for i in range(gunCount):
+			var bullet = playerBullet.instance()
+			get_parent().add_child(bullet)
+			var newvec = Vector2(bulletSpawn.global_position.x+35, bulletSpawn.global_position.y+25)
+			bullet.position = newvec
+			bullet.look_at(get_global_mouse_position())
+			bullet.velocity = get_global_mouse_position() - bullet.position
+		lastFire = 0
+	return
 
 
 func _on_fireTimer_timeout():
