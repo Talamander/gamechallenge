@@ -7,7 +7,7 @@ const playerBullet = preload("res://2D Version/Parent Classes/Projectile.tscn")
 
 #Exports
 export var rotation_speed:= 90.0
-export var gunCount = 3
+export var gunCount = 6
 
 #Onready Variables
 onready var animPlayer = $AnimationPlayer
@@ -26,14 +26,13 @@ var speed:= 360.0
 
 
 #Combat Variables
-var playerHealth = 500
-var playerHealthMAX = 500
+var playerHealth = 100
+var playerHealthMAX = 100
 
 var canFire = true
 
 var fireRate := 0.3
 var lastFire := 0.00
-
 
 
 
@@ -66,25 +65,27 @@ func _physics_process(delta: float) -> void:
 	animHandler()
 	lastFire += delta
 	
+	#Regeneration
 	if playerHealth < playerHealthMAX and playerHealth > 0:
-		playerHealth += 0.1;
+		playerHealth += 0.01;
 		healthLabel.text = "HP: " + String(playerHealth)
 	
 
 #Animation System
 func animHandler():
 	
+	var look_dir = get_global_mouse_position() - global_position
+	
+	if look_dir.x > 0:
+		$Sprite.set_flip_h(false)
+		$shadow.set_flip_h(false)
+	elif look_dir.x < 0:
+		$Sprite.set_flip_h(true)
+		$shadow.set_flip_h(true)
+		
+	
 	if motion == Vector2.ZERO:
 		animPlayer.play("Idlke")
-	
-	#Flips Player Sprite based on direction of motion
-	#If knockback from enemy occurs, this system will probably break
-	elif motion.x > 0:
-		$Sprite.set_flip_h(false)
-	elif motion.x < 0:
-		$Sprite.set_flip_h(true)
-	else:
-		pass
 
 
 
@@ -114,8 +115,9 @@ func TakeDamage(dmg):
 	playerHealth -= dmg
 	
 	if playerHealth <= 0:
-		print("player is kill")
-		healthLabel.text = "is kill"
+		print("You died")
+		healthLabel.text = "Game Over"
+		animPlayer.play("Dead")
 		return
 		
 	print("player hit HP: " + String(playerHealth))
@@ -132,6 +134,8 @@ func fire_bullet():
 			bullet.position = newvec
 			bullet.look_at(get_global_mouse_position())
 			bullet.velocity = get_global_mouse_position() - bullet.position
+			motion -= bullet.velocity*.5
+			SoundManager.play("Bullet2", 1, 0)
 		lastFire = 0
 	return
 

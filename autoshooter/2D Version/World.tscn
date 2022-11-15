@@ -1,29 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://2D Version/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://2D Version/Parent Classes/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://2D Version/Enemies/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://2D Version/World.gd" type="Script" id=3]
 
 [node name="World" type="Node2D"]
 position = Vector2( -46, 4 )
+script = ExtResource( 3 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( 540, 236 )
-rotationSpeed = 25
-fireRate = 0.15
-radius = 35
 
 [node name="Enemy2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -197, 770 )
-rotationSpeed = -25
-spawnpointCount = 3
-radius = 45
 
 [node name="Enemy3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -216, 73 )
-rotationSpeed = 52
-fireRate = 0.1
-spawnpointCount = 2
-radius = 25
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 122, 432 )
@@ -31,29 +23,13 @@ position = Vector2( 122, 432 )
 [node name="BulletSpawn" parent="Player" index="0"]
 position = Vector2( 5, -30 )
 
-[node name="Sprite" parent="Player" index="2"]
-position = Vector2( 2, -8 )
-
-[node name="CollisionShape2D" parent="Player" index="3"]
-visible = false
-
-[node name="Area2D" parent="Player" index="5"]
-visible = false
-
 [node name="CameraTrack" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
-
-[node name="HealthLabel" type="Label" parent="Player"]
-margin_left = -31.0
-margin_top = -55.0
-margin_right = 19.0
-margin_bottom = -41.0
-text = "HP: 500"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 122, 432 )
 current = true
-zoom = Vector2( 0.75, 0.75 )
+zoom = Vector2( 0.6, 0.6 )
 process_mode = 0
 smoothing_enabled = true
 
