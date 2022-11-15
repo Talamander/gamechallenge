@@ -1,10 +1,43 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://2D Version/Parent Classes/Projectile.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/bullet2.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Fireball.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 2 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Fly"
+length = 0.4
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
 
 [node name="Projectile" type="KinematicBody2D"]
 collision_layer = 4
@@ -13,9 +46,9 @@ script = ExtResource( 1 )
 speed = 500
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.141176, 1, 0.317647, 1 )
-scale = Vector2( 0.016, -0.016 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
+hframes = 2
 
 [node name="decayTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -27,6 +60,11 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Fly"
+anims/Fly = SubResource( 2 )
+anims/RESET = SubResource( 3 )
 
 [connection signal="timeout" from="decayTimer" to="." method="_on_decayTimer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

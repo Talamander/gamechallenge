@@ -31,6 +31,9 @@ position = Vector2( 122, 432 )
 [node name="BulletSpawn" parent="Player" index="0"]
 position = Vector2( 5, -30 )
 
+[node name="Sprite" parent="Player" index="2"]
+position = Vector2( 2, -8 )
+
 [node name="CollisionShape2D" parent="Player" index="3"]
 visible = false
 

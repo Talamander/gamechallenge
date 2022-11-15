@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/_Death.png-6c5080ad180c6159f218fd843f2d6720.stex"
+path="res://.import/Octopus.png-714376cbba844e93d1cc06a6a68d7e67.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D Version/Player/Art/_Death.png"
-dest_files=[ "res://.import/_Death.png-6c5080ad180c6159f218fd843f2d6720.stex" ]
+source_file="res://2D Version/Player/Art/Octopus.png"
+dest_files=[ "res://.import/Octopus.png-714376cbba844e93d1cc06a6a68d7e67.stex" ]
 
 [params]
 

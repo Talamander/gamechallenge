@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/_spriteSheet.png-0e8b37a2b2e0e2bc9c2a295c2e5d3692.stex"
+path="res://.import/Slime.png-5861c3cf4f21827cbde41e5558735a77.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2D Version/Player/Art/_spriteSheet.png"
-dest_files=[ "res://.import/_spriteSheet.png-0e8b37a2b2e0e2bc9c2a295c2e5d3692.stex" ]
+source_file="res://Sprites/Slime.png"
+dest_files=[ "res://.import/Slime.png-5861c3cf4f21827cbde41e5558735a77.stex" ]
 
 [params]
 
