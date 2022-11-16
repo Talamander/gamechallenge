@@ -107,13 +107,13 @@ anims/RESET = SubResource( 3 )
 
 [node name="Trail" type="Particles2D" parent="."]
 amount = 20
-lifetime = 4.0
 local_coords = false
 process_material = SubResource( 4 )
 
 [node name="Explosion" type="Particles2D" parent="."]
 amount = 10
 lifetime = 0.5
+one_shot = true
 explosiveness = 0.94
 local_coords = false
 process_material = SubResource( 7 )

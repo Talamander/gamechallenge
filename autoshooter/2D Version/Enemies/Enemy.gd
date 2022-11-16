@@ -6,14 +6,14 @@ onready var timer = $ShootTimer
 onready var aimRotator = $Rotator
 
 var rotationSpeed = 1000
-var fireRate = .8
+var fireRate = 1.5
 var spawnpointCount = 5
 var radius = 75
 
 #Movement Variables
 var motion = Vector2.ZERO
 var acceleration:= 5000
-var speed:= 50
+var speed:= 25
 
 export var enemyHealth = 30
 
