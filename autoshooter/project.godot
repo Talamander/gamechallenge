@@ -17,7 +17,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://2D Version/Singletons/Global.gd"
-SoundManager="*res://2D Version/Singletons/SoundManager.gd"
+Music="*res://2D Version/Singletons/Music.tscn"
+SoundManager="*res://2D Version/Singletons/SoundManager.tscn"
 
 [gui]
 

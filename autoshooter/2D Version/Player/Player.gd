@@ -135,7 +135,7 @@ func fire_bullet():
 			bullet.look_at(get_global_mouse_position())
 			bullet.velocity = get_global_mouse_position() - bullet.position
 			motion -= bullet.velocity*.5
-			SoundManager.play("Bullet2", 1, 0)
+			SoundManager.play("Bullet", rand_range(0.8, 1.3), 0)
 		lastFire = 0
 	return
 

@@ -27,4 +27,4 @@ func _on_decayTimer_timeout():
 func _on_Area2D_body_entered(body):
 	if body.has_method("EnemyTakeDamage"):
 		body.EnemyTakeDamage(10)
-		#queue_free()
+		queue_free()

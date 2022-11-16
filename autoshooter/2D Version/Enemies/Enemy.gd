@@ -60,8 +60,10 @@ func EnemyTakeDamage(dmg):
 	enemyHealth -= dmg
 	if enemyHealth <= 0 :
 		Global.instance_scene_on_main(explosion, self.global_position)
+		SoundManager.play("Explode", rand_range(0.8, 1.2), 5)
 		queue_free()
 	print("Enemy Hit")
+	SoundManager.play("Impact", rand_range(0.8, 1.2), 0)
 
 func _on_ShootTimer_timeout():
 	for s in aimRotator.get_children():

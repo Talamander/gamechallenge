@@ -111,6 +111,7 @@ local_coords = false
 process_material = SubResource( 4 )
 
 [node name="Explosion" type="Particles2D" parent="."]
+emitting = false
 amount = 10
 lifetime = 0.5
 one_shot = true

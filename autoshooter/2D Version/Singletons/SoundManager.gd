@@ -4,8 +4,8 @@ var sounds_path = "res://2D Version/Sounds/"
 
 var sounds = {
 	"Bullet" : load(sounds_path + "whooshthump.wav"),
-	#"Explosion" : load(sounds_path + ".wav"),
-	#"PlayerBullet" : load(sounds_path + ".wav"),
+	"Impact" : load(sounds_path + "squish.wav"),
+	"Explode" : load(sounds_path + "explode.wav")
 	#"EnemyBullet" : load(sounds_path + ".wav"),
 	#"Die" : load(sounds_path + ".wav")
 }
