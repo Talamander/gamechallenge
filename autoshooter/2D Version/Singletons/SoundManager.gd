@@ -5,9 +5,8 @@ var sounds_path = "res://2D Version/Sounds/"
 var sounds = {
 	"Bullet" : load(sounds_path + "whooshthump.wav"),
 	"Impact" : load(sounds_path + "squish.wav"),
+	"PlayerDamage" : load(sounds_path + "Playerhit.wav"),
 	"Explode" : load(sounds_path + "explode.wav")
-	#"EnemyBullet" : load(sounds_path + ".wav"),
-	#"Die" : load(sounds_path + ".wav")
 }
 
 onready var sound_players = get_children()

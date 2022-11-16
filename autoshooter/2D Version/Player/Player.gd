@@ -113,11 +113,13 @@ func calc_movement(acceleration):
 
 func TakeDamage(dmg):
 	playerHealth -= dmg
+	SoundManager.play("PlayerDamage", rand_range(0.8, 1.3), 0)
+	Global.emit_signal("add_screenshake", 2, 0.15)
 	
 	if playerHealth <= 0:
 		print("You died")
 		healthLabel.text = "Game Over"
-		animPlayer.play("Dead")
+		Global.emit_signal("add_screenshake", 5, 0.2)
 		return
 		
 	print("player hit HP: " + String(playerHealth))

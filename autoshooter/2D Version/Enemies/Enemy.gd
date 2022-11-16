@@ -61,6 +61,7 @@ func EnemyTakeDamage(dmg):
 	if enemyHealth <= 0 :
 		Global.instance_scene_on_main(explosion, self.global_position)
 		SoundManager.play("Explode", rand_range(0.8, 1.2), 15)
+		Global.emit_signal("add_screenshake", 1, 0.1)
 		queue_free()
 	print("Enemy Hit")
 	SoundManager.play("Impact", rand_range(0.8, 1.2), 0)
