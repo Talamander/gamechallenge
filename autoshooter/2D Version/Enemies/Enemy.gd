@@ -60,16 +60,18 @@ func EnemyTakeDamage(dmg):
 	enemyHealth -= dmg
 	if enemyHealth <= 0 :
 		Global.instance_scene_on_main(explosion, self.global_position)
-		SoundManager.play("Explode", rand_range(0.8, 1.2), 5)
+		SoundManager.play("Explode", rand_range(0.8, 1.2), 15)
 		queue_free()
 	print("Enemy Hit")
 	SoundManager.play("Impact", rand_range(0.8, 1.2), 0)
 
 func _on_ShootTimer_timeout():
-	for s in aimRotator.get_children():
-		var bullet = enemyBullet.instance()
-		var root = get_tree().get_root()
-		var current_scene = root.get_child(root.get_child_count()-1)
-		current_scene.add_child(bullet)
-		bullet.position = s.global_position
-		bullet.rotation = s.global_rotation
+	if check_distance_to_player() < 500:
+		for s in aimRotator.get_children():
+			var bullet = enemyBullet.instance()
+			var root = get_tree().get_root()
+			var current_scene = root.get_child(root.get_child_count()-1)
+			current_scene.add_child(bullet)
+			bullet.position = s.global_position
+			bullet.rotation = s.global_rotation
+			SoundManager.play("Bullet", rand_range(0.3, 0.5), -7)
