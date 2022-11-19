@@ -1,10 +1,8 @@
 extends Node
 
-# Singletons are globally accessible and can be great for sharing functions
-# across several scripts
-# we are using this singleton for the instancing scenes within scenes 
-# basically
-# bullets, effects, etc
+var player = null
+
+signal add_screenshake(amount, duration)
 
 func instance_scene_on_main(scene, position):
 	var main = get_tree().current_scene

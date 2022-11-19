@@ -1,31 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://2D Version/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://2D Version/Player/Art/_spriteSheet.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/PShadow.png" type="Texture" id=2]
 [ext_resource path="res://2D Version/Parent Classes/RayController.gd" type="Script" id=3]
-[ext_resource path="res://2D Version/Player/Art/_Death.png" type="Texture" id=4]
+[ext_resource path="res://2D Version/Player/Art/MoveDeath.png" type="Texture" id=4]
 
-[sub_resource type="Animation" id=6]
-resource_name = "Dead"
+[sub_resource type="Animation" id=9]
+resource_name = "Alive"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 4 ), ExtResource( 4 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "Idlke"
-length = 0.9
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -34,25 +17,70 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ) ]
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Dead"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("Sprite:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, -9.2792 ), Vector2( 2, -7.285 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
+resource_name = "Idlke"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, -8 ), Vector2( 2, -10.132 ), Vector2( 2, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2.0, -2.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -61,33 +89,71 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 2.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 2, -9.2792 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 resource_name = "Run"
+length = 0.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, -8 ), Vector2( 2, -10.132 ), Vector2( 2, -8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 10.0, 0.0, -10.0 ]
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 17, 36 )
+extents = Vector2( 21, 24.75 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 183.044
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 0, 1 )
+collision_mask = 2
 script = ExtResource( 1 )
 gunCount = 1
 
@@ -95,26 +161,38 @@ gunCount = 1
 position = Vector2( 0, -35 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Run"
+autoplay = "Alive"
+anims/Alive = SubResource( 9 )
 anims/Dead = SubResource( 6 )
 anims/Idlke = SubResource( 3 )
-anims/RESET = SubResource( 4 )
-anims/Run = SubResource( 5 )
+anims/RESET = SubResource( 8 )
+anims/Run = SubResource( 7 )
+
+[node name="shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.294118 )
+position = Vector2( 0, -2 )
+rotation = 3.14159
+scale = Vector2( 2, -2 )
+texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 11, -43 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-hframes = 10
-vframes = 2
+position = Vector2( 2, -9.2792 )
+rotation = 0.0349066
+scale = Vector2( -2, 2 )
+texture = ExtResource( 4 )
+hframes = 3
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 3, -7 )
 shape = SubResource( 2 )
 
 [node name="TargetingSystem" type="Position2D" parent="."]
 script = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="." groups=["Player"]]
+visible = false
 collision_layer = 0
 collision_mask = 0
 
@@ -127,6 +205,14 @@ shape = SubResource( 1 )
 [node name="fireTimer" type="Timer" parent="." groups=["Player"]]
 wait_time = 0.5
 one_shot = true
+
+[node name="HealthLabel" type="Label" parent="."]
+margin_left = -25.0
+margin_top = -55.0
+margin_right = 25.0
+margin_bottom = -41.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HP: 100"
 
 [connection signal="body_entered" from="Area2D" to="TargetingSystem" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="TargetingSystem" method="_on_Area2D_body_exited"]
