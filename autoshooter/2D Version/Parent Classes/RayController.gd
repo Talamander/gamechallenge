@@ -11,11 +11,7 @@ var active = false
 
 func _physics_process(delta):
 	
-	#DEBUG
-	if Input.is_action_just_pressed("ui_accept"):
-		print("Rays: ", ray_list)
-		var delete = ray_list.pop_back()
-		delete.enabled = false
+	
 	
 	
 	

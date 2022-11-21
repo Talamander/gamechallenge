@@ -70,6 +70,8 @@ func _physics_process(delta: float) -> void:
 		playerHealth += 0.01;
 		healthLabel.text = "HP: " + String(playerHealth)
 	
+	if Input.is_action_just_pressed("ui_accept"):
+		TakeDamage(100)
 
 #Animation System
 func animHandler():

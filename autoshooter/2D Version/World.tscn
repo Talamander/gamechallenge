@@ -10,13 +10,40 @@ position = Vector2( -46, 4 )
 script = ExtResource( 3 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 540, 236 )
+position = Vector2( 2255, -56 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 2 )]
-position = Vector2( -197, 770 )
+position = Vector2( 1518, 478 )
 
 [node name="Enemy3" parent="." instance=ExtResource( 2 )]
-position = Vector2( -216, 73 )
+position = Vector2( 1499, -219 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1891, -401 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1154, 133 )
+
+[node name="Enemy6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1135, -564 )
+
+[node name="Enemy7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2892, 557 )
+
+[node name="Enemy8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2155, 1091 )
+
+[node name="Enemy9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2136, 394 )
+
+[node name="Enemy10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3564, -296 )
+
+[node name="Enemy11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2827, 238 )
+
+[node name="Enemy12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2808, -459 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 122, 432 )
